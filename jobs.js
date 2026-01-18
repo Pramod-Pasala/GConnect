@@ -1,4 +1,4 @@
-fetch('https://osmaoufzgyaqbkqaekwx.supabase.co/rest/v1/jobs?select=*',{
+fetch('https://osmaoufzgyaqbkqaekwx.supabase.co/rest/v1/jobs?approved=eq.true&order=created_at.desc',{
  headers: {
    apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zbWFvdWZ6Z3lhcWJrcWFla3d4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg2ODUwMzQsImV4cCI6MjA4NDI2MTAzNH0.HWD_DaOXXTKvyM5M-YQuhW2c32Y-uiX2vQKdPOWfp8A'
  } 
