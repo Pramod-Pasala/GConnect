@@ -1,23 +1,42 @@
-<script>
-fetch('./jobs.json')
-  .then(res => {
-    if (!res.ok) throw new Error('Failed to load data');
-    return res.json();
-  })
-  .then(data => {
-    document.getElementById('data-title').textContent = data.title;
+const SUPABASE_URL = "https://osmaoufzgyaqbkqaekwx.supabase.c";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zbWFvdWZ6Z3lhcWJrcWFla3d4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg2ODUwMzQsImV4cCI6MjA4NDI2MTAzNH0.HWD_DaOXXTKvyM5M-YQuhW2c32Y-uiX2vQKdPOWfp8A";
 
-    const list = document.getElementById('data-list');
-    list.innerHTML = '';
+async function loadContacts() {
+  const res = await fetch(
+    `${SUPABASE_URL}/rest/v1/gconnect_contacts?select=*`,
+    {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`
+      }
+    }
+  );
 
-    data.stats.forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>${item.label}:</strong> ${item.value}`;
-      list.appendChild(li);
-    });
-  })
-  .catch(err => {
-    document.getElementById('data-title').textContent = 'Error loading data';
-    console.error(err);
+  const data = await res.json();
+  const container = document.getElementById("cards");
+
+  data.forEach(person => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    let contacts = "";
+    if (person.contact_email) {
+      contacts += `<a href="mailto:${person.contact_email}">📧 Email</a>`;
+    }
+    if (person.contact_linkedin) {
+      contacts += `<a href="${person.contact_linkedin}" target="_blank">🔗 LinkedIn</a>`;
+    }
+
+    card.innerHTML = `
+      <h3>${person.name}</h3>
+      <p>${person.position || ""}</p>
+      <p><strong>${person.company || ""}</strong></p>
+      <p>${person.location || ""}</p>
+      <div class="contact">${contacts}</div>
+    `;
+
+    container.appendChild(card);
   });
-</script>
+}
+
+loadContacts();
