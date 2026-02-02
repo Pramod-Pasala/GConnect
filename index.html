@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>GConnect</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GConnect Directory</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
 </head>
 <body>
+
   <header>
-    <h1>GConnect</h1>
-    <p>Professional Connections Directory</p>
+    <h1>Professional Contacts Directory</h1>
+    <h1></h1>
+    <p>Connect with professionals across industries</p>
   </header>
 
-  <main id="cards"></main>
+  <main>
+    <div class="toolbar">
+      <div class="search">
+        <input id="searchInput" type="text" placeholder="Search by name, company, role, or location…" />
+      </div>
+    </div>
 
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty" style="display:none;">No matching results</div>
+  </main>
+
+  <footer>
+    Built with Supabase · Hosted on GitHub Pages
+  </footer>
   <script src="script.js"></script>
+
 </body>
 </html>
