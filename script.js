@@ -1,8 +1,8 @@
 // 1. Replace with your Supabase credentials
     const SUPABASE_URL = "https://osmaoufzgyaqbkqaekwx.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9zbWFvdWZ6Z3lhcWJrcWFla3d4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg2ODUwMzQsImV4cCI6MjA4NDI2MTAzNH0.HWD_DaOXXTKvyM5M-YQuhW2c32Y-uiX2vQKdPOWfp8A";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_uKzdWa4FzOFpxJTtGnzzBg_v5z9tzoD";
 
-    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
@@ -12,7 +12,7 @@
 
     async function loadData() {
       const { data, error } = await supabaseClient
-        .from('contacts') // <-- your table name
+        .rpc('get_public_contacts') 
         .select('name, position, company, location, email, linkedin_profile');
 
       if (error) {
