@@ -12,8 +12,7 @@
 
     async function loadData() {
       const { data, error } = await supabaseClient
-        .rpc('get_public_contacts') 
-        .select('name, position, company, location, email, linkedin_profile');
+        .rpc('get_public_contacts');
 
       if (error) {
         console.error(error);
