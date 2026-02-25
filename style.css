@@ -99,6 +99,12 @@ header {
   animation: fadeInUp 0.5s ease both;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* ── Stats bar ── */
 .stats-bar {
   display: flex;
