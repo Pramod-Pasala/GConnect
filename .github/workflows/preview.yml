@@ -4,7 +4,8 @@ name: Preview CD
 
 on:
   push:
-    branches: [ "dev" ]
+    branches:
+      - dev
 
 permissions:
   contents: write
